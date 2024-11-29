@@ -1,17 +1,8 @@
 #!/bin/bash
 
-sudo timedatectl set-ntp true
-sudo hwclock --systohc
-
-sudo reflector -c France -a 12 --sort rate --save /etc/pacman.d/mirrorlist
-
 sudo firewall-cmd --add-port=1025-65535/tcp --permanent
 sudo firewall-cmd --add-port=1025-65535/udp --permanent
 sudo firewall-cmd --reload
-
-git clone https://aur.archlinux.org/yay.git
-cd yay/
-makepkg -si --noconfirm
 
 yay -S --noconfirm xviewer
 yay -S --noconfirm xplayer
@@ -21,6 +12,8 @@ yay -S --noconfirm pix
 #sudo systemctl enable --now system76-power
 #sudo system76-power graphics integrated
 #pikaur -S --noconfirm gnome-shell-extension-system76-power-git
+
+# See https://github.com/AdnanHodzic/auto-cpufreq?tab=readme-ov-file
 #pikaur -S --noconfirm auto-cpufreq
 #sudo systemctl enable --now auto-cpufreq
 

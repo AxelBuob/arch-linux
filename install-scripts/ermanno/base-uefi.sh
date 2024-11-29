@@ -1,18 +1,32 @@
 #!/bin/bash
 
+HOSTNAME=arch
+PASSWORD=password
+LANG=fr_FR.UTF-8
+KEYMAP=fr-pc
+FONT=ter-132n
+
 ln -sf /usr/share/zoneinfo/Europe/Paris /etc/localtime
+timedatectl set-ntp true
 hwclock --systohc
+
 sed -i '242s/.//' /etc/locale.gen
 locale-gen
-echo "LANG=fr_FR.UTF-8" >> /etc/locale.conf
-echo "KEYMAP=fr_FR-UTF-8" >> /etc/vconsole.conf
-echo "FONT=ter-132n" >> /etc/vconsole.conf
-echo "arch" >> /etc/hostname
+echo "LANG=$LANG" >> /etc/locale.conf
+
+echo "KEYMAP=$KEYMAP" >> /etc/vconsole.conf
+echo "FONT=$FONT" >> /etc/vconsole.conf
+
+echo "$HOSTNAME" >> /etc/hostname
 echo "127.0.0.1 localhost" >> /etc/hosts
 echo "::1       localhost" >> /etc/hosts
-echo "127.0.1.1 arch.localdomain arch" >> /etc/hosts
-echo root:password | chpasswd
+echo "127.0.1.1 $HOSTNAME.localdomain $HOSTNAME" >> /etc/hosts
 
+echo root:$PASSWORD | chpasswd
+
+
+
+pacman -S \
 
 # System Boot and Management
 grub \ # Bootloader for managing the system boot process.
@@ -75,10 +89,16 @@ acpid \ # Daemon for handling ACPI events.
 
 # Firewall and Security
 iptables-nft \ # Firewall based on Netfilter tables.
-ipset \ # Tool for manag
+ipset \ # Tool for managing IP address sets.
 
 # pacman -S --noconfirm xf86-video-amdgpu
 # pacman -S --noconfirm nvidia nvidia-utils nvidia-settings
+
+
+# See https://wiki.archlinux.org/title/Microcode#
+# pacman -S intel-ucode
+# pacman -S amd-ucode
+
 
 grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB #change the directory to /boot/efi is you mounted the EFI partition at /boot/efi
 grub-mkconfig -o /boot/grub/grub.cfg
