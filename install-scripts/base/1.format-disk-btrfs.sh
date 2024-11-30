@@ -47,7 +47,8 @@ mount /dev/sda1 /mnt/boot
 
 
 # Base packages install
-pactrap /mnt base base-devel linux linux-firmware  linux-headers git vim intel-ucode btrfs-progs terminus-font less sudo bash-completion
+pactrap /mnt base linux linux-firmware git vim intel-ucode btrfs-progs
+terminus-font less sudo bash-completion man ncdu ranger
  
 # Partition table generation
 genftsab -U /mnt >> /etc/fstab
