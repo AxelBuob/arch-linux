@@ -13,16 +13,11 @@ networkmanager \ # Network management tool.
 avahi \
 nss-mdns \
 reflector \
+inetutils \
 
 # File Sharing and Access
 gvfs \ # Virtual filesystem interface.
 
-# Audio and Multimedia
-alsa-utils \ # Audio management tools using ALSA.
-pipewire \ # Modern multimedia server for audio and video.
-pipewire-alsa \ # ALSA interface for PipeWire.
-pipewire-pulse \ # PulseAudio interface for PipeWire.
-pipewire-jack \ # JACK interface for PipeWire.
 
 # Energy Management
 tlp \ # Power management tools for laptops.
