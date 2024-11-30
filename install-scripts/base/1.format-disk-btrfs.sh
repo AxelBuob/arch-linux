@@ -43,12 +43,12 @@ mount -o noatime,compress=zstd,space_cache,discard=async,subvol=@ /dev/sda2 /mnt
 mkdir /mount/{boot,home,var}
 mount -o noatime,compress=zstd,space_cache,discard=async,subvol=@home /dev/sda2 /mnt/home
 mount -o noatime,compress=zstd,space_cache,discard=async,subvol=@var /dev/sda2 /mnt/var
-mount /dev/sda1 /mnt
+mount /dev/sda1 /mnt/boot
 
 
 # Base packages install
-pactrap /mnt base linux linux-firmware git vim intel-ucode btrfs-progs terminus-font less
-
+pactrap /mnt base linux linux-firmware git vim intel-ucode btrfs-progs terminus-font less sudo bash-completion
+ 
 # Partition table generation
 genftsab -U /mnt >> /etc/fstab
 

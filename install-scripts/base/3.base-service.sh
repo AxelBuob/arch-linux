@@ -1,3 +1,6 @@
+# Edit /etc/modprobe.d/blacklist.conf
+# blacklist elan_i2c
+
 pacman -S \
 
 # System Boot and Management
@@ -9,13 +12,10 @@ efibootmgr \ # EFI boot entry management tool.
 networkmanager \ # Network management tool.
 avahi \
 nss-mdns \
-
+reflector \
 
 # File Sharing and Access
 gvfs \ # Virtual filesystem interface.
-
-# Development Tools
-bash-completion \ # Auto-completion support for Bash.
 
 # Audio and Multimedia
 alsa-utils \ # Audio management tools using ALSA.
@@ -35,7 +35,7 @@ grub-mkconfig -o /boot/grub/grub.cfg
 
 systemctl enable NetworkManager
 systemctl enable tlp 
-systemctl enable avahi-daemon
+systemctl enable avahi-daemon.service
 systemctl enable reflector.timer
 systemctl enable fstrim.timer
 systemctl enable acpid
@@ -44,9 +44,9 @@ systemctl enable acpid
 # If you are using 2 disks with BTRFS
 # MODULES(btrfs)
 # For intel MODULES(i915)
-mkinitcpio -p vmlinuz-linux
+mkinitcpio -P vmlinuz-linux
 
 # Exit and reboot
 exit
-umount -R
+umount -R /mnt
 reboot
