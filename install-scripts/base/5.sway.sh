@@ -17,17 +17,20 @@ systemctl enable --now zramd.service
 # Install the Destktop Environnement
 pacman -S \ 
 wayland \ # Xserver
-ly \ # Session manager
+ly \ # Session manager
 sway \ # window manager or compositor
 swaybar \ # status bar
 swayidle \ #idle daemon
 swaylock \ # lock screen
-wmenu dmenu \ # app launcher
+wmenu \ # app launcher
 foot \ # terminal emulator
-thunar thunar-archive-plugin \ # file manager and archive plugin
-pipewire pipewire-alsa pipewire-jack pipewire-pulse alsa-utils \ # audio
+pipewire \ pipewire-alsa pipewire-jack pipewire-pulse alsa-utils \ # audio
 
 # Extra
 firefox \
-terminator code vlc transmission-gtk xreader xed \
-nerd-fonts-inter nerd-fonts-sf-mono \
+code \
+vlc \
+transmission-gtk \
+archlinux-wallpaper \
+gnu-free-font \
+
